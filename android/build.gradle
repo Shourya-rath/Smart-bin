@@ -1,0 +1,23 @@
+
+plugins {
+    id 'com.android.application' apply false //version '7.4.1'
+    id 'org.jetbrains.kotlin.jvm' apply false //version '1.7.10' apply false
+    
+}
+// "current_key": "AIzaSyAn1NbjktJpxaKsM71Mfmg78QeMK1M67qQ"
+// "current_key" : "AIzaSyDa3kQgY44mCj2A3p3baDPjPH_hXePYePU"
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    project.evaluationDependsOn(':app')
+}
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
